@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import { BrowserRouter,Routes, Route } from 'react-router-dom'
+import Taskform from './components/Taskform'
+import Tasklist from './components/Tasklist'
+import { Container } from '@mui/material'
+import Menu from './components/Navbar'
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
-export default App;
+    <BrowserRouter>
+    <Menu />
+      <Container>
+        <Routes>
+          <Route path="/" element={<Tasklist />} />
+          <Route path="/tasks/new" element={<Taskform />} />
+          <Route path="/tasks/:id/edit/" element={<Taskform />} />
+        </Routes>
+      </Container>
+    </BrowserRouter>
+  )
+};
