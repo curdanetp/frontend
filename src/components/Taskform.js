@@ -1,6 +1,7 @@
 import { Button, Card, CardContent, CircularProgress, Grid, TextField, Typography } from "@mui/material";
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from "react-router-dom";
+const {bg}=require ('../config');
 
 export default function Taskform() {
   const [task, setTask] = useState({
@@ -12,12 +13,14 @@ export default function Taskform() {
   const navigate = useNavigate();
   const params = useParams();
 
+  
+
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
       setLoading(true)
       if (editing) {
-        const response = await fetch(`http://localhost:4000/tasks/${params.id}`, {
+        const response = await fetch(`${bg.bkend_path}/${params.id}`, {
           method: 'PUT',
           body: JSON.stringify(task),
           headers: { "Content-Type": "application/json" },
@@ -25,7 +28,7 @@ export default function Taskform() {
         const data = await response.json()
         console.log(data)
       } else {
-        const response = await fetch('http://localhost:4000/tasks', {
+        const response = await fetch(`${bg.bkend_path}/tasks`, {
           method: 'POST',
           body: JSON.stringify(task),
           headers: { "Content-Type": "application/json" }
@@ -43,7 +46,7 @@ export default function Taskform() {
   const handleChange = e => setTask({ ...task, [e.target.name]: e.target.value })
 
   const loadTask = async (id) => {
-    const res = await fetch(`http://localhost:4000/tasks/${id}`)
+    const res = await fetch(`${bg.bkend_path}/${id}`)
     const data = await res.json()
     console.log("trae para editar",data)
     setTask({ title: data.title, description: data.description })

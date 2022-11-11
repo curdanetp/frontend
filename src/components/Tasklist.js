@@ -1,6 +1,7 @@
 import { Button, Card, CardContent, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import {useNavigate} from 'react-router-dom'
+const {bg}=require ('../config');
 
 export default function Tasklist() {
 
@@ -8,7 +9,7 @@ export default function Tasklist() {
   const navigate=useNavigate();
   const loadTasks = async () => {
     try {
-      const response = await fetch('http://localhost:4000/tasks');
+      const response = await fetch(`${bg.bkend_path}/tasks`);
       const data = await response.json();
       console.log(data);
       setTasks(data)  
@@ -19,7 +20,7 @@ export default function Tasklist() {
 
   const handleDelete = async (id) => {
     try {
-      const res = await fetch(`http://localhost:4000/tasks/${id}`, {
+      const res = await fetch(`${bg.bkend_path}/tasks/${id}`, {
         method: "DELETE",
       })
       console.log(res.status, res.statusText);
