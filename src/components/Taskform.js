@@ -20,7 +20,7 @@ export default function Taskform() {
       e.preventDefault();
       setLoading(true)
       if (editing) {
-        const response = await fetch(`${bg.bkend_path}/${params.id}`, {
+        const response = await fetch(`${bg.bkend_path}/tasks/${params.id}`, {
           method: 'PUT',
           body: JSON.stringify(task),
           headers: { "Content-Type": "application/json" },
@@ -46,7 +46,7 @@ export default function Taskform() {
   const handleChange = e => setTask({ ...task, [e.target.name]: e.target.value })
 
   const loadTask = async (id) => {
-    const res = await fetch(`${bg.bkend_path}/${id}`)
+    const res = await fetch(`${bg.bkend_path}/tasks/${id}`)
     const data = await res.json()
     console.log("trae para editar",data)
     setTask({ title: data.title, description: data.description })

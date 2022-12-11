@@ -2,7 +2,7 @@ import { Button, Card, CardContent, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import {useNavigate} from 'react-router-dom'
 const {bg}=require ('../config');
-
+console.log(bg);
 export default function Tasklist() {
 
   const [tasks, setTasks] = useState([])
