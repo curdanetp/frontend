@@ -3,5 +3,5 @@ const bg= {
     port: process.env.REACT_APP_BE_PORT,
     bkend_path:`http://${process.env.REACT_APP_BE_HOST}:${process.env.REACT_APP_BE_PORT}`        
 }
-console.log(bg);
+console.log('Paso por config.js',bg);
 module.exports={bg}
