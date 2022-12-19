@@ -32,10 +32,4 @@ jobs:
           push: true
           tags: curdanetp/fre-app:latest
         if: steps.build.outcome == 'success'
-      -
-        name: Redeploy in local k3s
-        uses: actions-hub/kubectl@master
-        env:
-          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
-        with:
-          args: apply -f /home/ubuntu/challenge/fre-app-deployment.yaml
+
