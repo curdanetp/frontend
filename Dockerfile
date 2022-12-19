@@ -4,7 +4,7 @@ WORKDIR /app
 COPY package*.json /app/
 RUN npm ci 
 COPY . .
-RUN npm run build 
+RUN cat .env >> ~.bashrc && source ~/.bashrc && npm run build 
 EXPOSE 3000
 #CMD [ "npm", "run build" ]
 FROM nginx:1.23.2-alpine as production_stage
