@@ -31,5 +31,4 @@ jobs:
           context: .
           push: true
           tags: curdanetp/fre-app:latest
-        if: steps.build.outcome == 'success'
 
