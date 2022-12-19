@@ -3,7 +3,7 @@ import Taskform from './components/Taskform'
 import Tasklist from './components/Tasklist'
 import { Container } from '@mui/material'
 import Menu from './components/Navbar'
-export default function App() {
+export default function App() {    
   return (
     <BrowserRouter>
     <Menu />
