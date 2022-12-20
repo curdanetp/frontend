@@ -1,7 +1,9 @@
 import { AppBar, Box, Button, Container, Toolbar, Typography } from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom'
+import {useLocation} from 'react-router-dom';
 export default function Navbar() {
   const navigate = useNavigate()
+  const location = useLocation();
   return (
     <Box>
       <AppBar position='static' color='transparent'>
