@@ -3,10 +3,10 @@ console.log(new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',
 console.log(process.env)
 console.log('-----------------------------------------------------------------------')
 const bg= {        
-    host: process.env.REACT_APP_BE_HOST,
-    port: process.env.REACT_APP_BE_PORT,
-    bkend_path:`http://${process.env.REACT_APP_BE_HOST}:${process.env.REACT_APP_BE_PORT}`        
+    host: `http://${windows.location}/api`,
+    port: 4000,
+    bkend_path:`http://${windows.location}/api:4000`        
 }
 console.log(new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(timestamp));
-console.log('Paso por config.js :',bg);
+console.log('Paso por config.js :',`http://${windows.location}/api`);
 module.exports={bg}
