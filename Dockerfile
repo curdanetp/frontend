@@ -4,8 +4,8 @@ WORKDIR /app
 COPY package*.json /app/
 RUN npm ci 
 COPY . .
-RUN npm run build 
 EXPOSE 3000
+RUN npm run build
 #CMD [ "npm", "run build" ]
 FROM nginx:1.23.2-alpine as production_stage
 WORKDIR /var/www/html
