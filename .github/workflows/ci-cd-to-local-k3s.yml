@@ -27,7 +27,7 @@ jobs:
           # type=ref,event=branch
           # type=ref,event=pr          
           tags: |
-            type=semver,pattern={{raw}}
+            type=semver,pattern={{ raw }}
           flavor: |
             latest=false
       - name: Scan Dockerfile vulnerabilities using Checkov
