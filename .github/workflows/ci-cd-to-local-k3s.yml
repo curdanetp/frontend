@@ -45,7 +45,7 @@ jobs:
         with:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}:${{ env.VERSION }}
+          tags: curdanetp/fre-app:${{ steps.extract_version.outputs.version }}
           labels: ${{ steps.meta.outputs.labels }}        
           
 
