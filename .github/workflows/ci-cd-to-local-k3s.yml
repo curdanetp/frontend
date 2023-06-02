@@ -54,3 +54,4 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: curdanetp/fre-app:${{ steps.remove_prefix.outputs.version }}
           labels: ${{ steps.meta.outputs.labels }}
+          
