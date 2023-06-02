@@ -2,13 +2,13 @@ name: ci-cd-to-local-k3s
 
 on:
   push:
+    branches:
+      - "**"
     tags:
       - "v*.*.*"
-    branches:
-      - '**'
   pull_request:
     branches:
-      - 'main'      
+      - 'main'
 
 jobs:
   docker:
@@ -26,8 +26,7 @@ jobs:
           tags: |
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
-            type=semver,pattern={{major}},enable=${{ !startsWith(github.ref, 'refs/tags/v0.') }}
+            type=raw,value={{sha}},enable=${{ github.ref_type != 'tag' }}
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
