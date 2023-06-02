@@ -9,5 +9,5 @@ const bg= {
     bkend_path:`http://${window.location.hostname}:${portserv}`        
 }
 console.log(new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(timestamp));
-console.log('Paso por config.js :',bg.bkend_path);
+console.log('Log de Paso por config.js :',bg.bkend_path);
 module.exports={bg}
