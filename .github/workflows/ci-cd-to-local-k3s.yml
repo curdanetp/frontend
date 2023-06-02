@@ -25,12 +25,15 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Set tag as tag-semver
-        uses: docker/metadata-action@v3
+        uses: docker/metadata-action@v4
         id: meta
         with:
-          images: curdanetp/fre-app
+          images: |
+            curdanetp/fre-app
           tags: |
-            type=semver, pattern={{raw}}
+            type=ref,event=branch
+            type=ref,event=tag
+            type=ref,event=pr
 
       - name: Build and push
         uses: docker/build-push-action@v4
