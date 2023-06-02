@@ -14,11 +14,10 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Checkout
+      - name: Checkout
         uses: actions/checkout@v3
-      -
-        name: Docker meta
+
+      - name: Docker meta
         id: meta
         uses: docker/metadata-action@v4
         with:
@@ -26,26 +25,32 @@ jobs:
           tags: |
             type=semver,pattern={{raw}}
             type=semver,pattern={{version}}
-      -
-        name: Set up QEMU
+
+      - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
-      -
-        name: Set up Docker Buildx
+
+      - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
-      -
-        name: Login to Docker Hub
+
+      - name: Login to Docker Hub
         if: github.event_name != 'pull_request'
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
-        name: Build and push
+
+      - name: Extract version from Git tag
+        id: extract_version
+        run: echo "::set-output name=version::${{ github.ref }}"
+
+      - name: Remove 'refs/tags/' prefix from version
+        id: remove_prefix
+        run: echo "::set-output name=version::${{ steps.extract_version.outputs.version/refs\/tags\// }}"
+
+      - name: Build and push
         uses: docker/build-push-action@v4
         with:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
-          tags: curdanetp/fre-app:${{ steps.extract_version.outputs.version }}
-          labels: ${{ steps.meta.outputs.labels }}        
-          
-
+          tags: curdanetp/fre-app:${{ steps.remove_prefix.outputs.version }}
+          labels: ${{ steps.meta.outputs.labels }}
