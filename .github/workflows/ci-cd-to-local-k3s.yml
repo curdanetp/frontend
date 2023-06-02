@@ -2,12 +2,13 @@ name: ci-cd-to-local-k3s
 
 on:
   push:
-    tags: [ v* ]
+    tags:
+      - "v*.*.*"
     branches:
-      - 'main'
-#  pull_request:
-#    branches:
-#      - 'main'      
+      - '**'
+  pull_request:
+    branches:
+      - 'main'      
 
 jobs:
   docker:
@@ -21,7 +22,14 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: curdanetp/fre-app        
+          images: curdanetp/fre-app
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=sha
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
