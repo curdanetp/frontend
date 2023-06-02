@@ -31,7 +31,7 @@ jobs:
           images: |
             curdanetp/fre-app
           tags: |
-            type=semver,enable=true,priority=900,pattern=	{{raw}}
+            type=semver,enable=true,priority=900,pattern={{raw}}
 
       - name: Build and push
         uses: docker/build-push-action@v4
